@@ -6,6 +6,7 @@ import com.sample.android.todolistapp.domain.foundation.ErrorEntity
 import com.sample.android.todolistapp.domain.foundation.ResultEntity
 import com.sample.android.todolistapp.domain.repository.TodoRepository
 import kotlinx.coroutines.*
+import java.io.IOException
 import java.net.ConnectException
 
 class TodoRepositoryImp(
@@ -24,7 +25,7 @@ class TodoRepositoryImp(
                     completed = it.completed,
                 )
             })
-        }catch (e: ConnectException) {
+        }catch (e: IOException) {
             ResultEntity(error = ErrorEntity.Network(e))
         } catch (e: Exception) {
             ResultEntity(error = ErrorEntity.Unknown(e))
